@@ -1,0 +1,31 @@
+@import "./utils/variables";
+@import "./layout/horizontal-nav";
+@import "./layout/vertical-nav";
+@import "./layout/home";
+@import "./layout/daily-activity";
+@import "./layout/average-sessions-duration";
+@import "./layout/score";
+@import "./layout/radar-performance";
+@import "./layout/cards-on-right";
+@import "./components/spinerloader";
+
+// MAIN ELEMENTS
+* {
+  box-sizing: border-box;
+}
+* a {
+  text-decoration: none;
+  color: $black;
+}
+body {
+  font-family: $main-font;
+  margin: auto;
+  color: $red;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  height: 100vh;
+}

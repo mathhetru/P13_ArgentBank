@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomeView from "./pages/HomeView";
+import SignInView from "./pages/SignInView";
+import UserView from "./pages/UserView";
+import PrivateRoute from "./components/user/PrivateRoute";
+import "./styles/style.scss";
+
+// ! TOREAD https://danitano.medium.com/privateroute-in-react-router-6-a-deep-dive-to-redirect-to-the-current-page-after-login-b3b321c39c2c
+// ! PrivateRoute is a custom component that checks if the user is authenticated. If the user is authenticated, it renders the component passed to it. If the user is not authenticated, it redirects the user to the login page.
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomeView />} />
+        <Route path="/signin" element={<SignInView />}></Route>
+        <Route
+          path="/user"
+          element={
+            <PrivateRoute>
+              <UserView />
+            </PrivateRoute>
+          }
+        ></Route>
+        <Route path="*" element={<HomeView />}></Route>
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
