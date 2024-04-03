@@ -1,31 +1,31 @@
 @import "./utils/variables";
-@import "./layout/horizontal-nav";
-@import "./layout/vertical-nav";
+@import "./layout/header";
+@import "./layout/hero";
+@import "./layout/features";
+@import "./layout/footer";
 @import "./layout/home";
-@import "./layout/daily-activity";
-@import "./layout/average-sessions-duration";
-@import "./layout/score";
-@import "./layout/radar-performance";
-@import "./layout/cards-on-right";
-@import "./components/spinerloader";
 
 // MAIN ELEMENTS
 * {
   box-sizing: border-box;
 }
+
 * a {
   text-decoration: none;
-  color: $black;
+  color: $dark-blue;
 }
-body {
+
+html {
   font-family: $main-font;
-  margin: auto;
-  color: $red;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: $dark-blue;
 }
-#root {
+
+body {
+  margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-  height: 100vh;
+  min-height: 100vh;
 }
