@@ -7,7 +7,7 @@ function Home() {
   return (
     <>
       <Header />
-      <main>
+      <main className="main">
         <Hero />
         <Features />
       </main>

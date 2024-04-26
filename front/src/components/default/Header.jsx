@@ -1,9 +1,63 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/argentBankLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUserCircle,
+  faRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
+
+import { useDispatch, useSelector } from "react-redux";
+import { authSlice } from "../signin-form/authSlice";
+import { profileUser } from "../../services/ApiServices";
 
 function Header() {
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const token = useSelector((state) => state.auth.token);
+
+  const userFirstName = useSelector((state) => state.user.firstName);
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch(authSlice.actions.logoutUser());
+  };
+
+  const headerIfUserLoginOrLogout = () => {
+    if (isAuthenticated) {
+      // si l'utilisateur est authentifié, on récupère les données de l'utilisateur
+      try {
+        dispatch(profileUser(token));
+      } catch (error) {
+        console.error(error);
+      }
+
+      return (
+        <div>
+          <Link className="main-nav-item" to="/user">
+            <FontAwesomeIcon icon={faUserCircle} />
+            <span className="main-nav-title">{userFirstName}</span>
+          </Link>
+          <Link className="main-nav-item" onClick={handleLogout}>
+            <FontAwesomeIcon icon={faRightFromBracket} />
+            <span className="main-nav-title">Sign Out</span>
+          </Link>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Link className="main-nav-item" to="/signin">
+            <FontAwesomeIcon
+              icon={faUserCircle}
+              className="fa fa-user-circle"
+            />
+            <span className="main-nav-title">Sign In</span>
+          </Link>
+        </div>
+      );
+    }
+  };
+
   return (
     <nav className="main-nav">
       <Link className="main-nav-logo" to="/">
@@ -14,13 +68,8 @@ function Header() {
         />
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
-      {/* TODO if user is auth, the header changes  */}
-      <div>
-        <Link className="main-nav-item" to="/signin">
-          <FontAwesomeIcon icon={faUserCircle} className="fa fa-user-circle" />
-          Sign In
-        </Link>
-      </div>
+      {/* if user is auth, the header changes  */}
+      {headerIfUserLoginOrLogout()}
     </nav>
   );
 }
