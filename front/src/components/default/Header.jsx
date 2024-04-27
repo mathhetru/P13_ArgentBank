@@ -7,6 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import { authSlice } from "../signin-form/authSlice";
 import { profileUser } from "../../services/ApiServices";
 
@@ -14,7 +15,6 @@ function Header() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const token = useSelector((state) => state.auth.token);
-
   const userFirstName = useSelector((state) => state.user.firstName);
 
   const handleLogout = (e) => {
@@ -22,15 +22,19 @@ function Header() {
     dispatch(authSlice.actions.logoutUser());
   };
 
-  const headerIfUserLoginOrLogout = () => {
+  useEffect(() => {
+    // si l'utilisateur est authentifié, on récupère les données de l'utilisateur
     if (isAuthenticated) {
-      // si l'utilisateur est authentifié, on récupère les données de l'utilisateur
       try {
         dispatch(profileUser(token));
       } catch (error) {
         console.error(error);
       }
+    }
+  }, [isAuthenticated, dispatch, token]);
 
+  const headerIfUserLoginOrLogout = () => {
+    if (isAuthenticated) {
       return (
         <div>
           <Link className="main-nav-item" to="/user">

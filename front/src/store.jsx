@@ -19,8 +19,5 @@ export const store = configureStore({
   reducer: combineReducers({
     user: userSlice.reducer,
     auth: authSlice.reducer,
-    //   list: cartSlice.reducer,
-    //   menu: menuSlice.reducer,
-    //   [api.reducerPath]: api.reducer,
   }),
 });
