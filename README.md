@@ -1,7 +1,7 @@
 # P13 - Argent Bank Project
 
-> Le projet 12 de la formation Openclassrooms Développeur Front-end "Développez un tableau de bord d'analytics avec React"
-> 12th project of Front-end Web Developper training by OpenClassrooms "analytics dashboard with React"
+> Le projet 13 de la formation Openclassrooms Développeur Front-end "Utilisez une API pour un compte utilisateur bancaire avec React"
+> 13th project of Front-end Web Developper training by OpenClassrooms "Use an API for a bank user account with React"
 
 This codebase contains the code needed to run the backend and the frontend for Argent Bank.
 
