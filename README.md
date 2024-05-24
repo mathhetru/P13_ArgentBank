@@ -1,6 +1,9 @@
-# Project #10 - Argent Bank API
+# P13 - Argent Bank Project
 
-This codebase contains the code needed to run the backend for Argent Bank.
+> Le projet 12 de la formation Openclassrooms Développeur Front-end "Développez un tableau de bord d'analytics avec React"
+> 12th project of Front-end Web Developper training by OpenClassrooms "analytics dashboard with React"
+
+This codebase contains the code needed to run the backend and the frontend for Argent Bank.
 
 ## Getting Started
 
@@ -28,7 +31,7 @@ mongo --version
 2. Open a terminal window in the cloned project
 3. Run the following commands:
 
-### Backend
+## Backend
 
 ```bash
 # Go to the back repository
@@ -46,29 +49,29 @@ npm run populate-db
 
 Your back server should now be running at http://locahost:3001 and you will now have two users in your MongoDB database!
 
-## Populated Database Data
+### Populated Database Data
 
 Once you run the `populate-db` script, you should have two users in your database:
 
-## Tony Stark
+### Tony Stark
 
 - First Name: `Tony`
 - Last Name: `Stark`
 - Email: `tony@stark.com`
 - Password: `password123`
 
-## Steve Rogers
+### Steve Rogers
 
 - First Name: `Steve`,
 - Last Name: `Rogers`,
 - Email: `steve@rogers.com`,
 - Password: `password456`
 
-## API Documentation
+### API Documentation
 
 To learn more about how the API works, once you have started your local environment, you can visit: http://localhost:3001/api-docs
 
-### Frontend
+## Frontend
 
 ```bash
 # Go to the back repository
