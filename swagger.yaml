@@ -149,8 +149,7 @@ paths:
         - name: id
           in: path
           required: true
-          schema:
-            type: string
+          type: string
         - in: header
           type: string
           name: Authorization
