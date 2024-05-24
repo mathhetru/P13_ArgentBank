@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { updateProfileUser } from "../../services/ApiServices";
 
 function Account() {
@@ -12,6 +12,11 @@ function Account() {
   const [editForm, setEditForm] = useState(false);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setFirstName(userFirstName);
+    setLastName(userLastName);
+  }, [userFirstName, userLastName]);
 
   const handleClickEditNameBtn = () => {
     setEditForm(!editForm);
@@ -56,6 +61,7 @@ function Account() {
                 id="firstname"
                 value={firstName}
                 onInput={handleChangeFirstName}
+                placeholder={userFirstName}
               />
             </div>
             <div className="form-update-name__input">
@@ -65,6 +71,7 @@ function Account() {
                 id="lastname"
                 value={lastName}
                 onInput={handleChangeLastName}
+                placeholder={userLastName}
               />
             </div>
             <button className="form-update-name__button" onClick={handleUpdate}>

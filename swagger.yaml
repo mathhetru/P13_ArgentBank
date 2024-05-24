@@ -1,0 +1,208 @@
+swagger: '2.0'
+info:
+  title: Bank Argent API documentation
+  description: Contains all available API endpoints in this codebase for managing transactions
+  version: '1.0.0'
+  termsOfService: 'http://swagger.io/terms/'
+host: localhost:3001
+basePath: /api/v1
+schemes:
+  - http
+paths:
+  /transactions:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions
+      summary:  All transaction's user of the current month
+      description: API for transactions
+      parameters:
+        - in: header
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Get transactions successfully
+          schema:
+            $ref: '#/definitions/Transactions'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+  /transaction:
+    post:
+      tags:
+        - Transaction
+      summary: Create a transaction
+      description: API for transaction
+      parameters:
+        - in: header
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - in: body
+          name: body
+          description: Transaction Payload
+          required: true
+          schema:
+            $ref: '#/definitions/Transaction'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction created successfully
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: Invalid Fields
+        '401':
+          description: Unauthorized due to missing or invalid token
+        '403':
+          description: Forbidden, access to the resource is denied
+        '500':
+          description: Internal Server Error
+  /transaction/{id}:
+    get:
+      security:
+        - Bearer: []
+      parameters: 
+        - in: header
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - name: id
+          in: path
+          required: true
+          type: string
+      tags:
+        - Transaction
+      summary:  Get a specific transaction
+      description: API for a specific transaction
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Get transactions successfully
+          schema:
+            $ref: '#/definitions/Transaction'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction
+      summary: Update a specific transaction
+      description: API for updating a transaction
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+        - in: header
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - in: body
+          name: body
+          description: Update transaction attributes
+          required: true
+          schema:
+            $ref: '#/definitions/Transaction'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction updated successully
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: Invalid Fields
+        '401':
+          description: Unauthorized due to missing or invalid token
+        '403':
+          description: Forbidden, access to the resource is denied
+        '500':
+          description: Internal Server Error
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction
+      summary: Delete a specific transaction
+      description: API for deleting a transaction
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - in: header
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction deleted successully
+        '400':
+          description: Invalid Fields
+        '401':
+          description: Unauthorized due to missing or invalid token
+        '403':
+          description: Forbidden, access to the resource is denied
+        '500':
+          description: Internal Server Error
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+definitions:
+  Transactions:
+    type: array
+    items:
+        $ref: '#/definitions/Transaction'
+  Transaction:
+    type: object
+    properties:
+      id:
+        type: string
+      accountId:
+        type: string
+      date:
+        type: string
+        format: date
+      description: 
+        type: string
+      currency: 
+        type: string
+      type:
+        type: string
+      amount:
+        type: number
+      category:
+        type: string
+        enum:
+            - food
+            - rent
+            - car
+            - other
+      notes:
+        type: string

@@ -6,11 +6,12 @@ import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 // import { useLoginUserMutation } from "../../services/ApiServices";
 import { loginUser } from "../../services/ApiServices";
 // import { authSlice } from "./authSlice";
+import { isUserAuthenticated } from "../signin-form/authSelector";
 
 function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector(isUserAuthenticated);
   const error = useSelector((state) => state.auth.error);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -45,7 +46,6 @@ function SignInForm() {
     }
   };
 
-  console.log(isAuthenticated);
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">

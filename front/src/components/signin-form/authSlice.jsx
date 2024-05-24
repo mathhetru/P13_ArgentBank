@@ -4,7 +4,6 @@ import { loginUser } from "../../services/ApiServices.jsx";
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
-    isAuthenticated: false,
     token: null,
     error: null,
   },
@@ -15,17 +14,14 @@ export const authSlice = createSlice({
     //   return { ...currentState, token };
     // },
     logoutUser: (currentState) => {
-      currentState.isAuthenticated = false;
       currentState.token = null;
     },
   },
   extraReducers: function (builder) {
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.token = action.payload.body.token;
-      state.isAuthenticated = true;
     });
     builder.addCase(loginUser.rejected, (state, action) => {
-      state.isAuthenticated = false;
       state.error = action.payload;
     });
   },

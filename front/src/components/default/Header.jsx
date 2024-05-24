@@ -10,10 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { authSlice } from "../signin-form/authSlice";
 import { profileUser } from "../../services/ApiServices";
+import { isUserAuthenticated } from "../signin-form/authSelector";
 
 function Header() {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector(isUserAuthenticated);
   const token = useSelector((state) => state.auth.token);
   const userFirstName = useSelector((state) => state.user.firstName);
 
