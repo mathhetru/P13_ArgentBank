@@ -24,7 +24,7 @@ function Header() {
   };
 
   useEffect(() => {
-    // si l'utilisateur est authentifié, on récupère les données de l'utilisateur
+    // if user is authenticated, we fetch the user profile
     if (isAuthenticated) {
       try {
         dispatch(profileUser(token));

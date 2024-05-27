@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-// import { useLoginUserMutation } from "../../services/ApiServices";
 import { loginUser } from "../../services/ApiServices";
-// import { authSlice } from "./authSlice";
 import { isUserAuthenticated } from "../signin-form/authSelector";
 
 function SignInForm() {
@@ -22,24 +20,18 @@ function SignInForm() {
     }
   }, [isAuthenticated, navigate]);
 
-  const handleChangeInputEmail = (e) => {
+  const handleInputEmail = (e) => {
     setEmail(e.target.value);
   };
 
-  const handleChangeInputPassword = (e) => {
+  const handleInputPassword = (e) => {
     setPassword(e.target.value);
   };
 
-  // const result = useLoginUserMutation(email, password);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // userToken = await loginUser(email, password);
-    // dispatch(authSlice.actions.updateToken(userToken));
 
     try {
-      // ? pourquoi dispatch de l'appel api et pas de l'action
-      // lors de l'envoi à createAsyncThunk, on envoie un objet
       dispatch(loginUser({ email, password }));
     } catch (error) {
       console.error(error);
@@ -58,7 +50,7 @@ function SignInForm() {
               type="text"
               id="username"
               value={email}
-              onInput={handleChangeInputEmail}
+              onInput={handleInputEmail}
             />
           </div>
           <div className="input-wrapper">
@@ -67,7 +59,7 @@ function SignInForm() {
               type="password"
               id="password"
               value={password}
-              onInput={handleChangeInputPassword}
+              onInput={handleInputPassword}
             />
           </div>
           <div className="input-remember">

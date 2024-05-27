@@ -1,27 +1,8 @@
 const baseURL = "http://localhost:3001/api/v1";
 
-//V1
-// export const loginUser = async (email, password) => {
-//   const response = await fetch(`${baseURL}/user/login`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({ email, password }),
-//   });
-
-//   if (response.ok) {
-//     const userInfo = await response.json();
-//     return userInfo;
-//   } else {
-//     throw new Error(`Error: ${response.status}`);
-//   }
-// };
-
-// V2
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-// implémentation directe de createAsyncThunk dans l'appel api
+// direct call to the api in the createAsyncThunk implementation
 export const loginUser = createAsyncThunk(
   "auth/login",
   async ({ email, password }, { rejectWithValue }) => {
@@ -97,40 +78,3 @@ export const updateProfileUser = createAsyncThunk(
     }
   }
 );
-
-//V3
-// import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-// export const api = createApi({
-//   reducerPath: "api",
-//   // baseQuery: fetchBaseQuery({ baseUrl: "localhost:3001/api/v1" }),
-//   baseQuery: fetchBaseQuery({
-//     baseUrl: "http://localhost:3001/api/v1",
-//     // ! prepareHeaders is used to configure the header of every request and gives access to getState which we use to include the token from the store
-//     prepareHeaders: (headers, { getState }) => {
-//       const token = getState().auth.userToken;
-//       if (token) {
-//         headers.set("authorization", `Bearer ${token}`);
-//         return headers;
-//       }
-//     },
-//   }),
-//   endpoints: (builder) => ({
-//     loginUser: builder.mutation({
-//       query: (email, password) => ({
-//         url: "/user/login",
-//         method: "POST",
-//         body: JSON.stringify({ email, password }),
-//       }),
-//     }),
-//     signUpUser: builder.mutation({
-//       query: (email, password, firstName, lastName) => ({
-//         url: "/user/signup",
-//         method: "POST",
-//         body: JSON.stringify({ email, password, firstName, lastName }),
-//       }),
-//     }),
-//   }),
-// });
-
-// export const { useLoginUserMutation, useSignUpUserMutation } = api;

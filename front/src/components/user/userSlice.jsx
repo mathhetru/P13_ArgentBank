@@ -8,19 +8,6 @@ export const userSlice = createSlice({
     lastName: "",
     error: null,
   },
-  reducers: {
-    // updateFirstName: (currentState, action) => {
-    //   const user = {
-    //     ...currentState.user,
-    //     firstName: action.payload,
-    //   };
-    //   return { ...currentState, user };
-    // },
-    // updateLastName: (currentState, action) => {
-    //   const user = { ...currentState.user, lastName: action.payload };
-    //   return { ...currentState, user };
-    // },
-  },
   extraReducers: function (builder) {
     builder.addCase(profileUser.fulfilled, (state, action) => {
       state.firstName = action.payload.body.firstName;

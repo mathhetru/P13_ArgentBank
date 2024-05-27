@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { isUserAuthenticated } from "../signin-form/authSelector";
 
 const PrivateRoute = ({ children }) => {
-  // ! ici children est le composant UserView
   const isAuthenticated = useSelector(isUserAuthenticated);
   return isAuthenticated ? children : <Navigate to="/signin" />;
 };

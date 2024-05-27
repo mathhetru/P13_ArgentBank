@@ -100,12 +100,6 @@
       transition: 250ms;
       transition-duration: 0.2s;
     }
-    &[disabled] {
-      background-color: $grey;
-      color: $black;
-      cursor: not-allowed;
-      opacity: 0.5;
-    }
   }
   &-name__button-cancel {
     margin-left: 1rem;

@@ -8,11 +8,6 @@ export const authSlice = createSlice({
     error: null,
   },
   reducers: {
-    // updateToken: (currentState, action) => {
-    //   console.log("updateToken action", action.payload);
-    //   const token = { ...currentState.auth, token: action.payload };
-    //   return { ...currentState, token };
-    // },
     logoutUser: (currentState) => {
       currentState.token = null;
     },

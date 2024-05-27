@@ -2,7 +2,6 @@ export const isUserAuthenticated = (state) => {
   if (state.auth.token === null) {
     return false;
   }
-
   return checkIfJWTExpired(state.auth.token);
 };
 
@@ -18,7 +17,6 @@ function parseJwt(token) {
       })
       .join("")
   );
-
   return JSON.parse(jsonPayload);
 }
 
