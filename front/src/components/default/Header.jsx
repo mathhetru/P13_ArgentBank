@@ -9,6 +9,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { authSlice } from "../signin-form/authSlice";
+import { userSlice } from "../user/userSlice";
 import { profileUser } from "../../services/ApiServices";
 import { isUserAuthenticated } from "../signin-form/authSelector";
 
@@ -21,6 +22,7 @@ function Header() {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(authSlice.actions.logoutUser());
+    dispatch(userSlice.actions.logoutUser());
   };
 
   useEffect(() => {

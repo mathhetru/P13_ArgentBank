@@ -10,9 +10,9 @@ function FeatureItem(props) {
   );
 }
 
-FeatureItem.PropTypes = {
+FeatureItem.propTypes = {
   icon: PropTypes.string,
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   text: PropTypes.string,
 };
 

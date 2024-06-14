@@ -4,13 +4,13 @@ import { authSlice } from "./components/signin-form/authSlice";
 
 let state = {
   auth: {
-    isAuthenticated: false,
     token: null,
     error: null,
   },
   user: {
     firstName: "",
     lastName: "",
+    error: null,
   },
 };
 

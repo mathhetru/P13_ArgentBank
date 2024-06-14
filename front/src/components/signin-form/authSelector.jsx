@@ -5,6 +5,10 @@ export const isUserAuthenticated = (state) => {
   return checkIfJWTExpired(state.auth.token);
 };
 
+function checkIfJWTExpired(token) {
+  return parseJwt(token).exp > Date.now() / 1000;
+}
+
 function parseJwt(token) {
   const base64Url = token.split(".")[1];
   const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
@@ -20,6 +24,3 @@ function parseJwt(token) {
   return JSON.parse(jsonPayload);
 }
 
-function checkIfJWTExpired(token) {
-  return parseJwt(token).exp > Date.now() / 1000;
-}

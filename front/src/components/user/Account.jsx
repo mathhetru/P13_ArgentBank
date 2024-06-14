@@ -32,8 +32,12 @@ function Account() {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    dispatch(updateProfileUser({ token, firstName, lastName }));
-    setEditForm(!editForm);
+    if (!firstName || !lastName) {
+      alert("Please fill in all fields");
+    } else {
+      dispatch(updateProfileUser({ token, firstName, lastName }));
+      setEditForm(!editForm);
+    }
   };
 
   const handleCancelUpdate = (e) => {

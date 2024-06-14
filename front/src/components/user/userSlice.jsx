@@ -8,24 +8,28 @@ export const userSlice = createSlice({
     lastName: "",
     error: null,
   },
+  reducers: {
+    logoutUser: (currentState) => {
+      currentState.firstName = "";
+      currentState.lastName = "";
+    },
+  },
   extraReducers: function (builder) {
     builder.addCase(profileUser.fulfilled, (state, action) => {
       state.firstName = action.payload.body.firstName;
       state.lastName = action.payload.body.lastName;
+      state.error = "";
     });
+    // dispatch error if rejected promise (such as network error or user not found)
     builder.addCase(profileUser.rejected, (state, action) => {
-      state.firstName = "";
-      state.lastName = "";
       state.error = action.payload;
     });
     builder.addCase(updateProfileUser.fulfilled, (state, action) => {
-      console.log("updateProfileUser.fulfilled", action.payload);
       state.firstName = action.payload.body.firstName;
       state.lastName = action.payload.body.lastName;
+      state.error = "";
     });
     builder.addCase(updateProfileUser.rejected, (state, action) => {
-      state.firstName = "";
-      state.lastName = "";
       state.error = action.payload;
     });
   },
